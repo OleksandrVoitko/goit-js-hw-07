@@ -34,10 +34,12 @@ function onImageClick(e) {
     {
       onShow: (instance) => {
         const options = { once: true };
+
+        window.addEventListener("keydown", onEventHandler, options);
+
         function onEventHandler(e) {
           if (e.code === "Escape") instance.close();
         }
-        window.addEventListener("keydown", onEventHandler, options);
       },
     }
   );
@@ -48,5 +50,3 @@ function onImageClick(e) {
 function getImageUrl(e) {
   return e.target.dataset.source;
 }
-
-console.log(galleryItems);
