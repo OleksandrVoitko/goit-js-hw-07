@@ -1,8 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 
-const refs = {
-  divGallery: document.querySelector(".gallery"),
-};
+const divGalleryRef = document.querySelector(".gallery");
 
 const itemsImages = galleryItems
   .map((item) => {
@@ -21,9 +19,9 @@ const itemsImages = galleryItems
   })
   .join("");
 
-refs.divGallery.insertAdjacentHTML("afterbegin", itemsImages);
+divGalleryRef.insertAdjacentHTML("afterbegin", itemsImages);
 
-refs.divGallery.addEventListener("click", onImageClick);
+divGalleryRef.addEventListener("click", onImageClick);
 
 function onImageClick(e) {
   e.preventDefault();
@@ -33,12 +31,13 @@ function onImageClick(e) {
     `<img src="${imageUrl}" width="800" height="600">`,
     {
       onShow: (instance) => {
-        const options = { once: true };
-
-        window.addEventListener("keydown", onEventHandler, options);
+        window.addEventListener("keydown", onEventHandler);
 
         function onEventHandler(e) {
-          if (e.code === "Escape") instance.close();
+          if (e.code === "Escape") {
+            instance.close();
+            window.removeEventListener("keydown", onEventHandler);
+          }
         }
       },
     }
