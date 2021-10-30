@@ -13,12 +13,6 @@ const itemsImages = galleryItems
   })
   .join("");
 
-divGalleryRef.insertAdjacentHTML("afterbegin", itemsImages);
+  divGalleryRef.insertAdjacentHTML('afterbegin', itemsImages);
 
-divGalleryRef.addEventListener("click", onImageClick);
-
-function onImageClick(e) {
-  e.preventDefault();
-
-  let gallery = new SimpleLightbox(".gallery a", { captions: true });
-}
+  let gallery = new SimpleLightbox('.gallery a',{ captions: true });
